@@ -1,4 +1,4 @@
-#!/usr/local/bin/casperjs
+#!/usr/local/bin/casperjs --ssl-protocol=any
 
 var casper = require('casper').create({
     viewportSize: {width: 1600, height: 3200}
