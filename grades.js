@@ -1,26 +1,33 @@
-#!/usr/local/bin/casperjs 
+#!/usr/local/bin/casperjs
+
 var casper = require('casper').create({
     viewportSize: {width: 1600, height: 3200}
 });
      
-casper.start('https://oakparkusd.vcoe.org/studentconnect/Default.aspx?id=OPUSD', function() {
+studentId = casper.cli.get('studentid');
+password = casper.cli.get('password');
+fullName = casper.cli.get('fullname');
+file = casper.cli.get('file') ? casper.cli.get('file') : '/tmp/grades.png';
+loginURL = casper.cli.get('url') ? casper.cli.get('url') : 'https://oakparkusd.vcoe.org/studentconnect/Default.aspx?id=OPUSD';
+
+casper.start(loginURL, function() {
 });
 
 casper.then(function() {
     this.fillSelectors('form#loginform', {
-        'input[name="Pin"]'      : 'FILL_ME_IN',
-        'input[name="Password"]' : 'I_AM_A_FAKE_PASSWORD',
+        'input[name="Pin"]'      : studentId,
+        'input[name="Password"]' : password,
     }, false);
     this.click('input[id="LoginButton"]');
 });
 
 
-casper.waitForText("Firstname Lastname", function then() {
+casper.waitForText(fullName, function then() {
     this.click('img[id="Img3"]');
 });
 
 casper.waitForText("Assignments", function then() {
-    this.captureSelector('/tmp/grades.png', 'table[id="SP1_Assignments"]');
+    this.captureSelector(file, 'table[id="SP1_Assignments"]');
 //  this.echo('snapshot taken');
 });
 
