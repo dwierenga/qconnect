@@ -1,7 +1,9 @@
 #!/usr/local/bin/casperjs --ssl-protocol=any
 
 var casper = require('casper').create({
-    viewportSize: {width: 1600, height: 3200}
+    viewportSize: {width: 1600, height: 3200},
+//  verbose: true,
+//  logLevel: "debug"
 });
      
 studentId = casper.cli.get('studentid');
