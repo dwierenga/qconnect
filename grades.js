@@ -25,7 +25,8 @@ casper.then(function() {
 
 
 casper.waitForText(fullName, function then() {
-    this.click('img[id="Img3"]');
+    //this.click('img[id="Img3"]');
+    this.clickLabel(fullName);
 });
 
 casper.waitForText("Assignments", function then() {
