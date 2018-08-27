@@ -30,8 +30,10 @@ casper.waitForText(fullName, function then() {
 });
 
 casper.waitForText("Assignments", function then() {
+    casper.wait(3000, function then() {
     this.captureSelector(file, 'table[id="SP1_Assignments"]');
-//  this.echo('snapshot taken');
+    //  this.echo('snapshot taken');
+    });
 });
 
 casper.run(function() {
