@@ -23,6 +23,10 @@ casper.then(function() {
     this.click('input[id="LoginButton"]');
 });
 
+//uncomment this block to debug login problems
+//casper.then(function() {
+//    this.capture('out.png', {top: 0, left: 0, width: 500, height: 500});
+//});
 
 casper.waitForText(fullName, function then() {
     //this.click('img[id="Img3"]');
